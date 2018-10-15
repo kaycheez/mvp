@@ -21,15 +21,19 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  An app for carpool participants who need an aggregated source of truth for who is driving that day. 
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  In a carpool group, you'll want to rotate through an order so that the stress of driving is evenly distributed amongst one another. However, it can be a hassle keeping track of the order of the rotation, especially if one carpool member is not part of the rotation that day. [unnamed] is a simple way 
 
 ## Problem ##
   > Describe the problem your product solves.
+  Keeping track of the rotation is hard if there is only one source of truth and worse if the source of truth is always up to date. 
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  Using an 
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.

@@ -1,0 +1,19 @@
+{
+  "name": "rotatoMore",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon index.js"
+  },
+  "author": "kaycheez",
+  "license": "MIT",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.3",
+    "morgan": "^1.9.1"
+  }
+}
