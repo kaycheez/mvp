@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+// mongoose.Promise = global.Promise;
 
 const GroupSchema = new Schema({
   name: { 
