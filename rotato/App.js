@@ -1,40 +1,59 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import { fetchGroups } from './constants/api';
+// import { fetchGroups } from './constants/api';
+import axios from 'axios';
+import AddGroup from './components/AddGroup'
 
 export default class App extends React.Component {
-  static defaultProps = {
-    fetchGroups
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      loading: false,
+      groups: [],
+    }
   }
 
-  state = {
-    loading: false,
-    groups: [],
+  AddGroupHandler = (newGroup) => {
+    console.log(newGroup);
   }
 
-  async componentDidMount() {
-    this.setState({ loading: true });
-    let data = await this.props.fetchGroups();
-    console.log('this is data', data);
-    this.setState({ loading: false, groups: data}, () => {
-      console.log('this is state', this.state.loading)
+  getGroups() {
+    axios.get('http://localhost:1177/api/groups')
+      .then((res) => {
+        this.setState({
+          groups: res.data.groups
+        }, () => {
+          console.log(this.state.groups)
+        })
+      })
+  }
+
+  componentDidMount() {
+    this.getGroups();
+  }
+
+  AllGroups() {
+    return this.state.groups.map((group, i) => {
+      return(
+        <View key={i}>
+          <Text>{group.name}</Text>
+        </View>
+      )
     })
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Rotato App</Text>
-        <FlatList
-          // data={this.state.groups.map((group, i) => (
-          //   {key: group.name}
-          // ))}
-          // renderItem={(item) => <Text style={styles.item}>{item.key}</Text>}
-        />
+        <Text style={styles.title}>Rotato</Text>
+        {this.AllGroups()}
+        <AddGroup addNewGroup={this.AddGroupHandler} />>
       </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -49,4 +68,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 44,
   },
+  title: {
+    fontSize: 30
+  }
 });
