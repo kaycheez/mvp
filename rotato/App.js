@@ -14,8 +14,18 @@ export default class App extends React.Component {
     }
   }
 
-  AddGroupHandler = (newGroup) => {
-    console.log(newGroup);
+  AddGroupHandler = (name) => {
+    axios.post('http://localhost:1177/api/groups', {
+      name
+    })
+      .then((response) => {
+        console.log(response);
+        this.getGroups()
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
   }
 
   getGroups() {
