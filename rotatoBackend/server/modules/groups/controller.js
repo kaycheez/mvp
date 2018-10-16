@@ -17,7 +17,16 @@ const createGroup = async (req, res) => {
   } catch (e) {
     return res.status(e.status).json({ error: true, message: 'Error with adding'})
   }
-
 }
 
-module.exports = { getAllGroups, createGroup };
+const updateGroup = async (req, res) => {
+  const { _id } = req.body;
+
+  try {
+    return res.status(201).json({ groups: await Group.findOneAndUpdate({ _id: _id }, req.body)});
+  } catch (e) {
+    return res.status(e.status).json({ error: true, message: 'Error with updating'})
+  }
+}
+
+module.exports = { getAllGroups, createGroup, updateGroup }

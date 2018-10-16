@@ -7,8 +7,7 @@ const GroupSchema = new Schema({
     required: true
   },
   persons: { type: Array, default: [] },
-  order: { type: Array, default: [] },
-  queue: { type: Array, default: [] },
+  queue: { type: Number, default: 0 },
   history: [{
     person: String,
     date: { type: Date, default: Date.now }

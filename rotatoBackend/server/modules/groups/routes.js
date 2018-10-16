@@ -5,5 +5,6 @@ const routes = new Router();
 
 routes.post('/groups', GroupController.createGroup)
 routes.get('/groups', GroupController.getAllGroups)
+routes.put('/groups', GroupController.updateGroup)
 
 export default routes;
