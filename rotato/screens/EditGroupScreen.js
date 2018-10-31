@@ -11,12 +11,9 @@ export default class GroupNavi extends Component {
     }
   }
 
-  handleEditGroup() {
-
-  }
 
   AllPersons() {
-    return this.props.persons.map((person, i) => {
+    return this.props.navigation.state.params.persons.map((person, i) => {
       return(
         <TouchableOpacity 
           key={i}
@@ -29,6 +26,7 @@ export default class GroupNavi extends Component {
   
 
   render() {
+    console.log('edit group', this.props.navigation.state.params)
     return (
       <View style={styles.editScreen}>
         {this.AllPersons()}
@@ -38,7 +36,7 @@ export default class GroupNavi extends Component {
           onChangeText={(person) => this.setState({person})}
         />
         <Button
-          onPress={() => this.props.editGroup(this.state.person, this.props.index)}
+          onPress={() => this.props.navigation.state.params.editGroup(this.state.person, this.props.navigation.state.params.index)}
           title="+"
         />
       </View>

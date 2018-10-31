@@ -15,8 +15,9 @@ export default class HomeScreen extends Component {
 
     this.getGroups = this.getGroups.bind(this);
     this.AddGroupHandler = this.AddGroupHandler.bind(this);
-    this.handleGroupPress = this.handleGroupPress.bind(this);
+    // this.handleGroupPress = this.handleGroupPress.bind(this);
     this.editGroup = this.editGroup.bind(this);
+    this.editQueue = this.editQueue.bind(this);
   }
 
   getGroups() {
@@ -24,8 +25,6 @@ export default class HomeScreen extends Component {
       .then((res) => {
         this.setState({
           groups: res.data.groups
-        }, () => {
-          console.log(this.state.groups)
         })
       })
   }
@@ -33,45 +32,45 @@ export default class HomeScreen extends Component {
   AddGroupHandler(name) {
     axios.post('http://localhost:1177/api/groups', {name})
       .then((response) => {
-        console.log(response);
         this.getGroups()
       })
       .catch((error) => {
         console.error(error);
       });
-
   }
 
   componentDidMount() {
     this.getGroups();
   }
 
-  handleGroupPress(group, index) {
-    const editGroup = this.editGroup;
-    this.props.navigator.push({
-      component: GroupScreen,
-      title: group.name,
-      passProps: {
-        group: group,
-        editGroup: editGroup,
-        index: index,
-      },
-    })
-  }
-
   editGroup(newPerson, index) {
-    const currGroup = this.state.groups[index]
-    console.log(currGroup);
+    const currGroup = this.state.groups[index];
     currGroup.persons.push(newPerson)
     axios.put('http://localhost:1177/api/groups', currGroup)
+      .then(() => {
+        this.getGroups();
+      })
+  }
 
+  editQueue(newQueue, index) {
+    const currGroup = this.state.groups[index];
+    currGroup.queue = newQueue;
+    axios.put('http://localhost:1177/api/groups', currGroup)
+      .then(() => {
+        this.getGroups();
+      })
   }
 
   AllGroups() {
     return this.state.groups.map((group, index) => {
       return(
         <TouchableOpacity 
-          onPress={() => this.handleGroupPress(group, index)}
+          onPress={() => this.props.navigation.navigate('Group', {
+            group: this.state.groups[index],
+            editGroup: this.editGroup,
+            index: index,
+            editQueue: this.editQueue,
+          })}
           key={index}
         >
           <Text>{group.name}</Text>
@@ -83,7 +82,6 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Rotato</Text>
         {this.AllGroups()}
         <AddGroup addNewGroup={this.AddGroupHandler} />>
       </View>
@@ -94,7 +92,7 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 30,
+    paddingTop: 100,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',

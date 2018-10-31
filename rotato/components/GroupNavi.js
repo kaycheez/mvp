@@ -7,28 +7,31 @@ export default class GroupNavi extends Component {
   constructor(props) {
     super(props);
 
-    this.handleEditPress = this.handleEditPress.bind(this);
+    // this.handleEditPress = this.handleEditPress.bind(this);
   }
 
-  handleEditPress() {
-    this.props.navigator.push({
-      component: EditGroupScreen,
-      passProps: { 
-        persons: this.props.persons,
-        editGroup: this.props.editGroup,
-        index: this.props.index,
-      },
-    })
-  }
+  // handleEditPress() {
+  //   this.props.navigator.push({
+  //     component: EditGroupScreen,
+  //     passProps: { 
+  //       persons: this.props.persons,
+  //       editGroup: this.props.editGroup,
+  //       index: this.props.index,
+  //     },
+  //   })
+  // }
 
   render() {
-    console.log('group navi', this.props)
     return (
       <View  style={styles.buttonContainer}>
         <Button
           title="Edit Group"
           persons={this.props.persons}
-          onPress={() => this.handleEditPress()}
+          onPress={() => this.props.navigation.navigate('EditGroup', {
+            persons: this.props.persons,
+            editGroup: this.props.editGroup,
+            index: this.props.index,
+          })}
         />
       </View>
     )
