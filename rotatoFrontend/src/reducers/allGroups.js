@@ -1,8 +1,4 @@
-import {
-  FETCH_GROUPS_BEGIN,
-  FETCH_GROUPS_SUCCESS,
-  FETCH_GROUPS_FAILURE
-} from '../actions/actionCreators';
+import * as types from '../actions/types';
 
 const initialState = {
   groups: [],
@@ -11,23 +7,23 @@ const initialState = {
   error: null
 }
 
-export default function reducer(state = initialState, action) {
+export default function fetchGroupsReducer(state = initialState, action) {
   switch (action.type) {
-    case FETCH_GROUPS_BEGIN:
+    case types.FETCH_GROUPS_BEGIN:
       return { 
         ...state, 
         loading: true,
         error: null
       };
 
-    case FETCH_GROUPS_SUCCESS:
+    case types.FETCH_GROUPS_SUCCESS:
       return {
         ...state,
         loading: false,
         groups: action.payload.groups
       }
 
-    case FETCH_GROUPS_FAILURE:
+    case types.FETCH_GROUPS_FAILURE:
       return {
         ...state,
         loading: false,

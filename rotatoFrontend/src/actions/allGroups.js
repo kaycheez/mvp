@@ -1,26 +1,17 @@
+import * as types from './types';
 
-// export function listGroups(groups) {
-//   return {
-//     type: LOAD_GROUPS,
-//     payload: groups
-//   }
-// }
-
-export const FETCH_GROUPS_BEGIN = 'FETCH_GROUPS_BEGIN';
-export const FETCH_GROUPS_SUCCESS = 'FETCH_GROUPS_SUCCESS';
-export const FETCH_GROUPS_FAILURE = 'FETCH_GROUPS_FAILURE';
 
 export const fetchGroupsBegin = () => ({
-  type: FETCH_GROUPS_BEGIN
+  type: types.FETCH_GROUPS_BEGIN
 });
 
 export const fetchGroupsSuccess = groups => ({
-  type: FETCH_GROUPS_SUCCESS,
+  type: types.FETCH_GROUPS_SUCCESS,
   payload: { groups }
 });
 
 export const fetchGroupsFailure = error => ({
-  type: FETCH_GROUPS_FAILURE,
+  type: types.FETCH_GROUPS_FAILURE,
   payload: error
 });
 

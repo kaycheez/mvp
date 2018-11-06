@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import groups from "./groupReducer";
+import AllGroups from "./allGroups";
 
 export default combineReducers({
-  groups
+  AllGroups
 });
