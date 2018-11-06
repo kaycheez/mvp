@@ -1,17 +1,15 @@
-/* Reducers */
-import { navReducer, middleware } from 'navigation';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
+// import { composeWithDevTools } from 'redux-devtools-extension';
 
-const rootReducer = combineReducers({
-  nav: navReducer,
-});
+const middleware = [thunk]
 
-// Calling a separated store manager
-const store = configureStore(rootReducer, rootSaga, middleware);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+console.log(window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__);
 
-// Inside the creation of my store
-
-/* Navigation */
-middleware.push(rootNavigation);
-enhancers.push(applyMiddleware(...middleware));
-createStore(rootReducer, compose(...enhancers));
+export default createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(...middleware))
+);

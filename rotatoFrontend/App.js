@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from './src/store';
 
 // Navigator
 import Stack from './src/navigator';
 
-export default class App extends Component {
-  render() {
-    return (
-      <Stack />
-    );
-  }
-}
+const App = () => (
+  <Provider store={store}>
+    <Stack/>
+  </Provider>
+);
 
+export default App;
