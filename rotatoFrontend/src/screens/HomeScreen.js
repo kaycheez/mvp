@@ -8,23 +8,10 @@ export default class HomeScreen extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      modalVisible: false,
-    }
-    
-    this.toggleModalVisibility = this.toggleModalVisibility.bind(this);
     this.renderAllGroups = this.renderAllGroups.bind(this);
   }
 
-  toggleModalVisibility() {
-    this.setState({
-      modalVisible: !this.state.modalVisible
-    })
-  }
 
-  componentDidMount() {
-    this.props.fetchGroups();
-  }
 
   renderAllGroups() {
     const { loading, groups } = this.props.groupsList;
@@ -46,7 +33,7 @@ export default class HomeScreen extends Component {
   }
 
   render() {
-    const { modalVisible } = this.state;
+    const { navToAddGroup } = this.props;
 
     return (
         <Container>
@@ -55,15 +42,11 @@ export default class HomeScreen extends Component {
           </Content>
           <Footer>
             <FooterTab>
-              <Button full onPress={() => this.toggleModalVisibility()}>
+              <Button full onPress={() => navToAddGroup()}>
                 <Text>Add Group</Text>
               </Button>
             </FooterTab>
           </Footer>
-          <AddGroupContainer 
-            modalVisible={modalVisible}
-            toggleModalVisibility={this.toggleModalVisibility}
-          />
         </Container>
     )
   }

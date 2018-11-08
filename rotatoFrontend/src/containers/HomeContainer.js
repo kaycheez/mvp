@@ -5,12 +5,19 @@ import { ActionCreators } from "../actions";
 import HomeScreen from "../screens/HomeScreen";
 
 class HomeContainer extends Component {
+
+  componentDidMount() {
+    this.props.fetchGroups();
+  }
+
   render() {
     return React.createElement(
       HomeScreen,
       {
         groupsList: this.props.groupsList,
-        fetchGroups: this.props.fetchGroups,
+        navToAddGroup: () => {
+          this.props.navigation.navigate("AddGroup");
+        }
       }
     )
   }

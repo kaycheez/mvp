@@ -6,12 +6,19 @@ import AddGroup from "../modals/AddGroup";
 
 class AddGroupContainer extends Component {
   render() {
+    const { saveNewGroupAndRefresh, navigation } = this.props;
+
     return React.createElement(
       AddGroup,
       {
-        modalVisible: this.props.modalVisible,
-        toggleModalVisibility: this.props.toggleModalVisibility,
-        saveNewGroupAndRefresh: this.props.saveNewGroupAndRefresh
+        saveNewGroupAndGoBack: (newGroup) => {
+          saveNewGroupAndRefresh(newGroup);
+          navigation.navigate("Home");
+
+        },
+        goBack: () => {
+          navigation.navigate("Home");
+        }
       }
     )
   }
