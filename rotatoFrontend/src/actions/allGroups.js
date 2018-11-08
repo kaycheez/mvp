@@ -33,43 +33,45 @@ export function fetchGroups() {
 
 // SAVE GROUP
 
-export const addGroupBegin = () => ({
-  type: types.ADD_GROUP_BEGIN,
+export const saveGroupBegin = () => ({
+  type: types.SAVE_GROUP_BEGIN,
 });
 
-export const addGroupSuccess = () => ({
-  type: types.ADD_GROUP_SUCCESS,
+export const saveGroupSuccess = () => ({
+  type: types.SAVE_GROUP_SUCCESS,
 });
 
-export const addGroupFailure = error => ({
-  type: types.ADD_GROUP_FAILURE,
+export const saveGroupFailure = error => ({
+  type: types.SAVE_GROUP_FAILURE,
   payload: error
 });
 
-export function addGroup(newGroup) {
+export function saveNewGroup(newGroup) {
   return dispatch => {
-    dispatch(addGroupBegin());
+    dispatch(saveGroupBegin());
     return fetch('http://localhost:1177/api/groups', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
       method: "POST",
       body: JSON.stringify(newGroup)
     })
     .then(handleErrors)
-    .then(() => dispatch(addGroupSuccess()))
-    .catch(error => dispatch(addGroupFailure(error)));
+    .then(() => dispatch(saveGroupSuccess()))
+    .catch(error => dispatch(saveGroupFailure(error)));
+  }
+}
+
+export function saveNewGroupAndRefresh(newGroup) {
+  return dispatch => {
+    return dispatch(saveNewGroup(newGroup)).then(() => {
+      return dispatch(fetchGroups())
+    })
   }
 }
   
-// UPDATE GROUP NAME
-export const updateGroupName = name => ({
-  type: types.UPDATE_GROUP_NAME,
-  payload: name
-})
 
-// UPDATE ROTATEES
-export const updateRotatees = rotatees => ({
-  type: types.UPDATE_ROTATEES,
-  payload: rotatees
-})
 
 
 // Helpers

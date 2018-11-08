@@ -9,11 +9,9 @@ class AddGroupContainer extends Component {
     return React.createElement(
       AddGroup,
       {
-        fetchGroups: this.props.fetchGroups,
-        updateGroupName: this.props.updateGroupName,
-        updateRotatees: this.props.updateRotatees,
         modalVisible: this.props.modalVisible,
         toggleModalVisibility: this.props.toggleModalVisibility,
+        saveNewGroupAndRefresh: this.props.saveNewGroupAndRefresh
       }
     )
   }

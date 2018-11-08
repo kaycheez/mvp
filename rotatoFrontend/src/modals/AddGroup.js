@@ -4,11 +4,37 @@ import { Container, Content, Button, Text, Form, Label, Input, Item, Body, Foote
 
 
 export default class AddGroup extends Component {
+  constructor(props) {
+    super(props)
 
-  
+    this.state = {
+      name: '',
+      rotatees: [],
+    }
+    
+    this.handleSaveNewGroup = this.handleSaveNewGroup.bind(this)
+    this.handleTextChange = this.handleTextChange.bind(this)
+  }
+
+  handleTextChange(name) {
+    this.setState({
+      name
+    })
+  }
+
+  handleSaveNewGroup() {
+    const { saveNewGroupAndRefresh } = this.props;
+    const newGroup = {
+      name: this.state.name,
+      rotatees: this.state.rotatees,
+    }
+
+    saveNewGroupAndRefresh(newGroup);
+  }
+
 
   render() {
-    const { toggleModalVisibility, modalVisible, updateGroupName, updateRotatees, fetchGroups } = this.props;
+    const { toggleModalVisibility, modalVisible } = this.props;
 
     return (
       <View>
@@ -24,17 +50,14 @@ export default class AddGroup extends Component {
                 <Form>
                   <Item stackedLabel>
                     <Label>Group Name</Label>
-                    <Input name="name" onChangeText={(text) => {
-                      console.log(text);
-                      return updateGroupName(text)
-                    }}/>
+                    <Input name='name' onChangeText={(text) => this.handleTextChange(text)}/>
                   </Item>
                 </Form>
               </Body>
             </Content>
             <Footer>
             <FooterTab>
-              <Button transparent primary><Text>Save</Text></Button>
+              <Button transparent primary onPress={() => this.handleSaveNewGroup()}><Text>Save</Text></Button>
               <Button transparent danger onPress={() => toggleModalVisibility()}><Text>Cancel</Text></Button>   
             </FooterTab>
           </Footer>

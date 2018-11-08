@@ -39,7 +39,7 @@ export default function(state = initialState, action) {
         }
       )
 
-      case types.ADD_GROUP_BEGIN:
+      case types.SAVE_GROUP_BEGIN:
       return update(
         state, 
         {
@@ -48,7 +48,7 @@ export default function(state = initialState, action) {
           }
         }
       )
-    case types.ADD_GROUP_SUCCESS:
+    case types.SAVE_GROUP_SUCCESS:
       return update(
         state, 
         {
@@ -57,7 +57,7 @@ export default function(state = initialState, action) {
           }
         }
       )
-    case types.ADD_GROUP_FAILURE:
+    case types.SAVE_GROUP_FAILURE:
       return update(
         state, 
         {
@@ -68,25 +68,7 @@ export default function(state = initialState, action) {
         }
       )
 
-     case types.UPDATE_GROUP_NAME:
-     return update(
-       state,
-       {
-         newGroup: {
-           name: {$set: action.payload}
-         }
-       }
-     )
-      
-     case types.UPDATE_ROTATEES:
-     return update(
-       state,
-       {
-         newGroup: {
-           rotatees: {$set: action.payload}
-         }
-       }
-     )
+
 
     default:
       return state;  

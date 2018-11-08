@@ -9,11 +9,10 @@ const getAllGroups = async (req, res) => {
 }
 
 const createGroup = async (req, res) => {
-  const { newGroup } = req.body;
-  const newGroupModel = new Group(newGroup);
+  const newGroup = new Group(req.body);
 
   try {
-    return res.status(201).json({ groups: await newGroupModel.save() });
+    return res.status(201).json({ groups: await newGroup.save() });
   } catch (e) {
     return res.status(e.status).json({ error: true, message: 'Error with adding'})
   }
