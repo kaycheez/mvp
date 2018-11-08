@@ -34,15 +34,15 @@ export const fetchGroups = () => (
 // SAVE GROUP
 
 export const saveGroupBegin = () => ({
-  type: types.SAVE_GROUP_BEGIN,
+  type: types.SAVE_NEW_GROUP_BEGIN,
 });
 
 export const saveGroupSuccess = () => ({
-  type: types.SAVE_GROUP_SUCCESS,
+  type: types.SAVE_NEW_GROUP_SUCCESS,
 });
 
 export const saveGroupFailure = error => ({
-  type: types.SAVE_GROUP_FAILURE,
+  type: types.SAVE_NEW_GROUP_FAILURE,
   payload: error
 });
 
@@ -75,13 +75,13 @@ export function saveNewGroupAndRefresh() {
   }
 }
   
-export const updateName = name => ({
-  type: types.UPDATE_NAME,
+export const updateNewName = name => ({
+  type: types.UPDATE_NEW_NAME,
   payload: name
 });
 
-export const updateRotatees = rotatee => ({
-  type: types.UPDATE_ROTATEES,
+export const updateNewRotatees = rotatee => ({
+  type: types.UPDATE_NEW_ROTATEES,
   payload: rotatee
 });
 
@@ -92,7 +92,7 @@ export const updateNewRotateeName = rotateeName => ({
 
 export const updateAllRotatees = () => (
   (dispatch, getState ) => {
-    dispatch(updateRotatees(getState().allGroups.newGroup.newRotateeName));
+    dispatch(updateNewRotatees(getState().allGroups.newGroup.newRotateeName));
   }
 )
 

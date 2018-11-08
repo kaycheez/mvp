@@ -1,23 +1,33 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, FlatList } from 'react-native';
 import { Container, Content, Button, Text, Form, Label, Input, Item, Body, Footer, FooterTab, List, ListItem } from 'native-base';
 
 
 export default class AddGroup extends Component {
 
+  _keyExtractor = (item, index) => {
+    const id = index + 1;
+    return `${id}`
+  };
+
   renderRotatees() {
     const { rotatees } = this.props;
+    console.log('hey dur', rotatees);
 
     return (
-      <List 
-        dataArray={rotatees}
-        renderRow={(rotatee, sectionID, rowID) => 
-          <ListItem >
-            <Text>{rotatee}</Text>
+      <FlatList 
+        data={rotatees}
+        renderItem={({ item }) => {
+          return (
+          <ListItem>
+            <Text>{item}</Text>
           </ListItem>
+          )
         }
+        }
+        keyExtractor={this._keyExtractor}
       >
-      </List>
+      </FlatList>
     )
   }
 
@@ -32,9 +42,9 @@ export default class AddGroup extends Component {
     } = this.props;
 
     return (
-      <Container style={styles.container}>
-        <Content>
-          <Body>
+      <Container>
+        <Content style={styles.content}>
+          <Body  style={styles.name}>
             <Form>
               <Item stackedLabel>
                 <Label>Group Name</Label>
@@ -42,8 +52,12 @@ export default class AddGroup extends Component {
               </Item>
             </Form>
           </Body>
+            {/* <Text>Rotatees</Text> */}
+          <Body  style={styles.rotateeList}>
             <Text>Rotatees</Text>
             {this.renderRotatees()}
+          </Body>
+          <Body  style={styles.newRotatee}>
             <Form>
               <Item stackedLabel>
                 <Label>New Rotatee</Label>
@@ -53,6 +67,7 @@ export default class AddGroup extends Component {
             <Button primary onPress={() => updateAllRotatees()}>
               <Text> Add New Rotatee </Text>
             </Button>
+          </Body>
         </Content>
         <Footer>
           <FooterTab>
@@ -72,7 +87,16 @@ export default class AddGroup extends Component {
 
 
 const styles = StyleSheet.create({
-  container: {
+  content: {
+    flex: 1,
+  },
+  name: {
+    flex: 1,
+  },
+  rotateeList: {
+    flex: 4,
+  },
+  newRotatee: {
     flex: 1,
   },
 });

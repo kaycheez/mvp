@@ -5,14 +5,20 @@ import { ActionCreators } from "../actions";
 import ActiveGroup from "../screens/ActiveGroup";
 
 class ActiveGroupContainer extends Component {
+  componentDidMount() {
+    const { updateActiveGroup, groups, activeGroupIndex } = this.props;
+    const { name, rotatees, queue, history } = groups[activeGroupIndex];
+    console.log("name, rotatees, queue, history", name, rotatees, queue, history)
+    updateActiveGroup(name, rotatees, queue, history);
+  }
   
   render() {
-    const { activeGroupIndex, groups, navigation } = this.props;
-    
+    const { navigation, activeGroup } = this.props;
+    console.log()
     return React.createElement(
       ActiveGroup,
       {
-        activeGroup: groups[activeGroupIndex],
+        activeGroup,
         navToEditGroup: () => {
           navigation.navigate("EditGroup");
         },
@@ -23,7 +29,8 @@ class ActiveGroupContainer extends Component {
 
 const mapStateToProps = state => ({
   groups: state.allGroups.groupsList.groups,
-  activeGroupIndex: state.group.activeGroupIndex,
+  activeGroupIndex: state.activeGroup.activeGroupIndex,
+  activeGroup: state.activeGroup.activeGroup,
 });
 
 const mapDispatchToProps = dispatch => {

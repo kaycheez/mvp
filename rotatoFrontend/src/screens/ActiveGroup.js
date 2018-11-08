@@ -12,10 +12,10 @@ export default class HomeScreen extends Component {
 
 
   renderAllRotatees() {
-    const { activeGroup } = this.props;
-    const { rotatees } = activeGroup;
+    const { rotatees } = this.props.activeGroup;
+
     console.log('this is rotatees', rotatees);
-    console.log('this is activeGroup', activeGroup);
+  
 
     return (
       <List 
@@ -31,7 +31,7 @@ export default class HomeScreen extends Component {
   }
 
   render() {
-    const { navToEditGroup, activeGroup } = this.props;
+    const { navToEditGroup } = this.props;
 
     return (
         <Container>

@@ -16,14 +16,14 @@ class HomeContainer extends Component {
     return React.createElement(
       HomeScreen,
       {
-        groupsList: groupsList,
+        groupsList,
         navToAddGroup: () => {
           navigation.navigate("AddGroup");
         },
         navToGroup: (index) => {
           selectGroup(index);
           navigation.navigate("ActiveGroup");
-        }
+        },
       }
     )
   }
