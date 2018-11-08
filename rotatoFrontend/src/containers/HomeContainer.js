@@ -9,9 +9,8 @@ class HomeContainer extends Component {
     return React.createElement(
       HomeScreen,
       {
-        groups: this.props.groups,
+        groupsList: this.props.groupsList,
         fetchGroups: this.props.fetchGroups,
-        loading: this.props.loading
       }
     )
   }
@@ -19,9 +18,7 @@ class HomeContainer extends Component {
 
 
 const mapStateToProps = state => ({
-  groups: state.AllGroups.groups,
-  loading: state.AllGroups.loading,
-  error: state.AllGroups.error
+  groupsList: state.groups.groupsList
 });
 
 const mapDispatchToProps = dispatch => {

@@ -6,7 +6,7 @@ const GroupSchema = new Schema({
     type: String, 
     required: true
   },
-  persons: { type: Array, default: [] },
+  rotatees: { type: Array, default: [] },
   queue: { type: Number, default: 0 },
   history: [{
     person: String,

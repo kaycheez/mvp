@@ -1,16 +1,37 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Container, Header, Content, Button, Text, Footer, FooterTab } from 'native-base';
+
+import AddGroupContainer from '../containers/AddGroupContainer';
 
 export default class HomeScreen extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      modalVisible: false,
+    }
+    
+    this.toggleModalVisibility = this.toggleModalVisibility.bind(this);
+  }
+
+  toggleModalVisibility() {
+    this.setState({
+      modalVisible: !this.state.modalVisible
+    })
+  }
+
   componentDidMount() {
     this.props.fetchGroups();
   }
 
   AllGroups() {
-    if (!this.props.groups) {
+    const { loading, groupsList } = this.props.groups;
+
+    if (loading) {
       return <Text>Loading...</Text>
     }
-    return this.props.groups.map((group, index) => {
+    return groupsList.map((group, index) => {
       return(
         <TouchableOpacity 
           key={index}
@@ -22,12 +43,28 @@ export default class HomeScreen extends Component {
   }
 
   render() {
-    console.log(this.props)
+    const { modalVisible } = this.state;
+
     return (
-      <View style={styles.container}>
-        {this.AllGroups()}
-        <Text>see me</Text>
-      </View>
+        <Container>
+          <Header>Rotato</Header>
+          <Content>
+            <Button full>
+              <Text>Button</Text>
+            </Button>
+          </Content>
+          <Footer>
+            <FooterTab>
+              <Button full onPress={() => this.toggleModalVisibility()}>
+                <Text>Add Group</Text>
+              </Button>
+            </FooterTab>
+          </Footer>
+          <AddGroupContainer 
+            modalVisible={modalVisible}
+            toggleModalVisibility={this.toggleModalVisibility}
+          />
+        </Container>
     )
   }
 }
