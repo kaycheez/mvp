@@ -4,26 +4,19 @@ import { bindActionCreators } from "redux";
 import { ActionCreators } from "../actions";
 import AddGroup from "../screens/AddGroup";
 
-class AddGroupContainer extends Component {
+class EditGroupContainer extends Component {
   render() {
-    const { 
-      saveNewGroupAndRefresh, 
-      navigation, 
-      updateName, 
-      updateRotatee, 
-    } = this.props;
 
     return React.createElement(
       AddGroup,
       {
-        updateName,
-        updateRotatee,
         saveNewGroupAndGoBack: (newGroup) => {
-          saveNewGroupAndRefresh(newGroup)
-            .then(() => navigation.navigate("Home"));
+          saveNewGroupAndRefresh(newGroup);
+          navigation.goBack();
+
         },
         goBack: () => {
-          navigation.navigate("Home");
+          navigation.goBack();
         }
       }
     )
@@ -35,4 +28,4 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(ActionCreators, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(AddGroupContainer)
+export default connect(null, mapDispatchToProps)(EditGroupContainer)

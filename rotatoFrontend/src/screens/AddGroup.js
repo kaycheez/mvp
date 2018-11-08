@@ -4,18 +4,14 @@ import { Container, Content, Button, Text, Form, Label, Input, Item, Body, Foote
 
 
 export default class AddGroup extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      name: '',
-      rotatees: [],
-    }
-  }
 
   render() {
-    const { saveNewGroupAndGoBack, goBack } = this.props;
-    const { name, rotatees } = this.state;
+    const { 
+      saveNewGroupAndGoBack, 
+      goBack, 
+      updateName, 
+      updateRotatee 
+    } = this.props;
 
     return (
       <Container style={styles.container}>
@@ -24,7 +20,7 @@ export default class AddGroup extends Component {
             <Form>
               <Item stackedLabel>
                 <Label>Group Name</Label>
-                <Input name='name' onChangeText={(name) => this.setState({ name })}/>
+                <Input name='name' onChangeText={(name) => updateName(name)}/>
               </Item>
             </Form>
           </Body>
@@ -32,7 +28,7 @@ export default class AddGroup extends Component {
         <Footer>
           <FooterTab>
             <Button transparent primary onPress={() => {
-                saveNewGroupAndGoBack({ name, rotatees});
+                saveNewGroupAndGoBack();
               }}
             ><Text>Save</Text></Button>
             <Button transparent danger onPress={() => goBack()}>

@@ -3,7 +3,7 @@ import update from 'immutability-helper';
 
 const initialState = { 
   groupsList: { groups: [], loading: false, error: null },
-  newGroup: { loading: false, error: null },
+  newGroup: { name: '', rotatees: [], loading: false, error: null },
 }
 
 export default function(state = initialState, action) {
@@ -63,6 +63,36 @@ export default function(state = initialState, action) {
           newGroup: {
             loading: {$set: false},
             error: {$set: action.payload}
+          }
+        }
+      )
+    case types.SAVE_GROUP_FAILURE:
+      return update(
+        state, 
+        {
+          newGroup: {
+            loading: {$set: false},
+            error: {$set: action.payload}
+          }
+        }
+      )
+
+    case types.UPDATE_NAME:
+      return update(
+        state, 
+        {
+          newGroup: {
+            name: {$set: action.payload}
+          }
+        }
+      )
+
+    case types.UPDATE_ROTATEE:
+      return update(
+        state, 
+        {
+          newGroup: {
+            rotatees: {$set: action.payload}
           }
         }
       )

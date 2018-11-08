@@ -3,10 +3,15 @@ export const FETCH_GROUPS_BEGIN = 'FETCH_GROUPS_BEGIN';
 export const FETCH_GROUPS_SUCCESS = 'FETCH_GROUPS_SUCCESS';
 export const FETCH_GROUPS_FAILURE = 'FETCH_GROUPS_FAILURE';
 
-// Save Group
+// New Group
+  // Saving
 export const SAVE_GROUP_BEGIN = 'SAVE_GROUP_BEGIN';
 export const SAVE_GROUP_SUCCESS = 'SAVE_GROUP_SUCCESS';
 export const SAVE_GROUP_FAILURE = 'SAVE_GROUP_FAILURE';
+  // Updating New Group
+export const UPDATE_NAME = 'UPDATE_NAME';
+export const UPDATE_ROTATEE = 'UPDATE_ROTATEE';
+
 
 // Select Group
 export const SELECT_GROUP = 'SELECT_GROUP';

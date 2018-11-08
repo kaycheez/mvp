@@ -46,8 +46,12 @@ export const saveGroupFailure = error => ({
   payload: error
 });
 
-export function saveNewGroup(newGroup) {
-  return dispatch => {
+export const saveNewGroup = () => (
+  (dispatch, getState ) => {
+    const newGroup = {
+      name: getState().allGroups.newGroup.name,
+      rotatees: getState().allGroups.newGroup.rotatees
+    }
     dispatch(saveGroupBegin());
     return fetch('http://localhost:1177/api/groups', {
       headers: {
@@ -61,17 +65,25 @@ export function saveNewGroup(newGroup) {
     .then(() => dispatch(saveGroupSuccess()))
     .catch(error => dispatch(saveGroupFailure(error)));
   }
-}
+)
 
-export function saveNewGroupAndRefresh(newGroup) {
+export function saveNewGroupAndRefresh() {
   return dispatch => {
-    return dispatch(saveNewGroup(newGroup)).then(() => {
+    return dispatch(saveNewGroup()).then(() => {
       return dispatch(fetchGroups())
     })
   }
 }
   
+export const updateName = name => ({
+  type: types.UPDATE_NAME,
+  payload: name
+});
 
+export const updateRotatees = rotatees => ({
+  type: types.UPDATE_ROTATEE,
+  payload: rotatees
+});
 
 
 // Helpers
