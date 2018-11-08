@@ -11,12 +11,18 @@ class HomeContainer extends Component {
   }
 
   render() {
+    const { groupsList, navigation, selectGroup } = this.props;
+
     return React.createElement(
       HomeScreen,
       {
-        groupsList: this.props.groupsList,
+        groupsList: groupsList,
         navToAddGroup: () => {
-          this.props.navigation.navigate("AddGroup");
+          navigation.navigate("AddGroup");
+        },
+        navToGroup: (index) => {
+          selectGroup(index);
+          navigation.navigate("ActiveGroup");
         }
       }
     )

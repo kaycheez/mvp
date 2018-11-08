@@ -14,7 +14,8 @@ export default class HomeScreen extends Component {
 
 
   renderAllGroups() {
-    const { loading, groups } = this.props.groupsList;
+    const { navToGroup, groupsList } = this.props;
+    const { loading, groups } = groupsList;
 
     if (loading) {
       return <Text>Loading...</Text>
@@ -23,7 +24,7 @@ export default class HomeScreen extends Component {
       <List 
         dataArray={groups}
         renderRow={(group, sectionID, rowID) => 
-          <ListItem button onPress={() => console.log(rowID)}>
+          <ListItem button onPress={() => navToGroup(rowID)}>
             <Text>{group.name}</Text>
           </ListItem>
         }

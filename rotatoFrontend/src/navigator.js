@@ -1,13 +1,15 @@
 import { createStackNavigator } from 'react-navigation'; 
 
-// Screens
+// Containers
 import HomeContainer from './containers/HomeContainer';
 import AddGroupContainer from './containers/AddGroupContainer';
+import ActiveGroupContainer from './containers/ActiveGroupContainer';
 
 export default createStackNavigator(
   {
     Home: HomeContainer,
-    AddGroup: AddGroupContainer
+    AddGroup: AddGroupContainer,
+    ActiveGroup: ActiveGroupContainer
   },
   {
     initialRouteName: 'Home'

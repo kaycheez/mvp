@@ -3,26 +3,24 @@ import update from 'immutability-helper';
 
 const initialState = { 
   editedGroup: { name: '', rotatees: [], queue: 0, history: [], loading: false, error: null },
-  activeGroup: null
+  activeGroupIndex: null
 }
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case types.SELECT_GROUP:
       return update(
-        state, 
-        {
-          group: {
-            activeGroup: {$set: action.payload}
+        state,
+          {
+            activeGroupIndex: {$set: action.payload}
           }
-        }
       )
 
       case types.UPDATE_GROUP_BEGIN:
       return update(
         state, 
         {
-          newGroup: {
+          editedGroup: {
             loading: {$set: true}
           }
         }
@@ -31,7 +29,7 @@ export default function(state = initialState, action) {
       return update(
         state, 
         {
-          newGroup: {
+          editedGroup: {
             loading: {$set: false},
           }
         }
@@ -40,7 +38,7 @@ export default function(state = initialState, action) {
       return update(
         state, 
         {
-          newGroup: {
+          editedGroup: {
             loading: {$set: false},
             error: {$set: action.payload}
           }
