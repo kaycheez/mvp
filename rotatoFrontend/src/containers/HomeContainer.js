@@ -25,7 +25,7 @@ class HomeContainer extends Component {
 
 
 const mapStateToProps = state => ({
-  groupsList: state.groups.groupsList
+  groupsList: state.allGroups.groupsList
 });
 
 const mapDispatchToProps = dispatch => {

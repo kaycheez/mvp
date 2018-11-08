@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ActionCreators } from "../actions";
-import AddGroup from "../modals/AddGroup";
+import AddGroup from "../screens/AddGroup";
 
 class AddGroupContainer extends Component {
   render() {
@@ -24,13 +24,9 @@ class AddGroupContainer extends Component {
   }
 }
 
-const mapStateToProps = ( state, ownProps ) => ({
-  modalVisible: ownProps.modalVisible,
-  toggleModalVisibility: ownProps.toggleModalVisibility
-});
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(ActionCreators, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddGroupContainer)
+export default connect(null, mapDispatchToProps)(AddGroupContainer)

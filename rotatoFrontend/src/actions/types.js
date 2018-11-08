@@ -8,3 +8,10 @@ export const SAVE_GROUP_BEGIN = 'SAVE_GROUP_BEGIN';
 export const SAVE_GROUP_SUCCESS = 'SAVE_GROUP_SUCCESS';
 export const SAVE_GROUP_FAILURE = 'SAVE_GROUP_FAILURE';
 
+// Select Group
+export const SELECT_GROUP = 'SELECT_GROUP';
+
+//Edit Group
+export const EDIT_GROUP_BEGIN = 'EDIT_GROUP_BEGIN';
+export const EDIT_GROUP_SUCCESS = 'EDIT_GROUP_SUCCESS';
+export const EDIT_GROUP_FAILURE = 'EDIT_GROUP_FAILURE';

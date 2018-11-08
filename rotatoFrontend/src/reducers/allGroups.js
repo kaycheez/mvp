@@ -3,8 +3,7 @@ import update from 'immutability-helper';
 
 const initialState = { 
   groupsList: { groups: [], loading: false, error: null },
-  newGroup: { name: '', rotatees: [], loading: false, error: null },
-  activeGroup: { name: '', rotatees: [], queue: 0, history: [], loading: false, error: null },
+  newGroup: { loading: false, error: null },
 }
 
 export default function(state = initialState, action) {
@@ -68,7 +67,7 @@ export default function(state = initialState, action) {
         }
       )
 
-
+    
 
     default:
       return state;  

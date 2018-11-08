@@ -1,6 +1,8 @@
-import * as GroupsAction from './allGroups';
+import * as AllGroupsAction from './allGroups';
+import * as GroupAction from './group';
 
 export const ActionCreators = Object.assign(
   {},
-  GroupsAction
+  AllGroupsAction,
+  GroupAction
 )
