@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Header, Content, Button, Text, Footer, FooterTab } from 'native-base';
+import { Container, Content, Button, Text, Footer, FooterTab, List, ListItem } from 'native-base';
 
 import AddGroupContainer from '../containers/AddGroupContainer';
 
@@ -13,6 +13,7 @@ export default class HomeScreen extends Component {
     }
     
     this.toggleModalVisibility = this.toggleModalVisibility.bind(this);
+    this.renderAllGroups = this.renderAllGroups.bind(this);
   }
 
   toggleModalVisibility() {
@@ -25,21 +26,23 @@ export default class HomeScreen extends Component {
     this.props.fetchGroups();
   }
 
-  AllGroups() {
-    const { loading, groupsList } = this.props.groups;
+  renderAllGroups() {
+    const { loading, groups } = this.props.groupsList;
 
     if (loading) {
       return <Text>Loading...</Text>
     }
-    return groupsList.map((group, index) => {
-      return(
-        <TouchableOpacity 
-          key={index}
-        >
-          <Text>{group.name}</Text>
-        </TouchableOpacity>
-      )
-    })
+    return (
+      <List 
+        dataArray={groups}
+        renderRow={(group, sectionID, rowID) => 
+          <ListItem button onPress={() => console.log(rowID)}>
+            <Text>{group.name}</Text>
+          </ListItem>
+        }
+      >
+      </List>
+    )
   }
 
   render() {
@@ -47,11 +50,8 @@ export default class HomeScreen extends Component {
 
     return (
         <Container>
-          <Header>Rotato</Header>
           <Content>
-            <Button full>
-              <Text>Button</Text>
-            </Button>
+            {this.renderAllGroups()}
           </Content>
           <Footer>
             <FooterTab>
