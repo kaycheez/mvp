@@ -3,7 +3,7 @@ import update from 'immutability-helper';
 
 const initialState = { 
   groupsList: { groups: [], loading: false, error: null },
-  newGroup: { name: '', rotatees: [], loading: false, error: null },
+  newGroup: { name: '', rotatees: [], newRotateeName: '', loading: false, error: null },
 }
 
 export default function(state = initialState, action) {
@@ -87,12 +87,22 @@ export default function(state = initialState, action) {
         }
       )
 
-    case types.UPDATE_ROTATEE:
+    case types.UPDATE_ROTATEES:
       return update(
         state, 
         {
           newGroup: {
-            rotatees: {$set: action.payload}
+            rotatees: {$push: [action.payload]}
+          }
+        }
+      )
+      
+    case types.UPDATE_NEW_ROTATEE_NAME:
+      return update(
+        state, 
+        {
+          newGroup: {
+            newRotateeName: {$set: action.payload}
           }
         }
       )

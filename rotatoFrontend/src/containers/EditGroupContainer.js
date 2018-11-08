@@ -6,10 +6,24 @@ import AddGroup from "../screens/AddGroup";
 
 class EditGroupContainer extends Component {
   render() {
+    const { 
+      name,
+      rotatees,
+      navigation, 
+      updateName, 
+      updateAllRotatees, 
+      updateNewRotateeName,
+      saveNewGroupAndRefresh, 
+    } = this.props;
 
     return React.createElement(
       AddGroup,
       {
+        name,
+        rotatees,
+        updateName,
+        updateAllRotatees,
+        updateNewRotateeName,
         saveNewGroupAndGoBack: (newGroup) => {
           saveNewGroupAndRefresh(newGroup);
           navigation.goBack();

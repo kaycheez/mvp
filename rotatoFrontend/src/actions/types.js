@@ -10,7 +10,8 @@ export const SAVE_GROUP_SUCCESS = 'SAVE_GROUP_SUCCESS';
 export const SAVE_GROUP_FAILURE = 'SAVE_GROUP_FAILURE';
   // Updating New Group
 export const UPDATE_NAME = 'UPDATE_NAME';
-export const UPDATE_ROTATEE = 'UPDATE_ROTATEE';
+export const UPDATE_ROTATEES = 'UPDATE_ROTATEES';
+export const UPDATE_NEW_ROTATEE_NAME = 'UPDATE_NEW_ROTATEE_NAME';
 
 
 // Select Group

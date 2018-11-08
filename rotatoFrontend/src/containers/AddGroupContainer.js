@@ -7,17 +7,23 @@ import AddGroup from "../screens/AddGroup";
 class AddGroupContainer extends Component {
   render() {
     const { 
-      saveNewGroupAndRefresh, 
+      name,
+      rotatees,
       navigation, 
       updateName, 
-      updateRotatee, 
+      updateAllRotatees, 
+      updateNewRotateeName,
+      saveNewGroupAndRefresh, 
     } = this.props;
 
     return React.createElement(
       AddGroup,
       {
+        name,
+        rotatees,
         updateName,
-        updateRotatee,
+        updateAllRotatees,
+        updateNewRotateeName,
         saveNewGroupAndGoBack: (newGroup) => {
           saveNewGroupAndRefresh(newGroup)
             .then(() => navigation.navigate("Home"));
@@ -30,9 +36,13 @@ class AddGroupContainer extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  name: state.allGroups.newGroup.name,
+  rotatees: state.allGroups.newGroup.rotatees,
+})
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(ActionCreators, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(AddGroupContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(AddGroupContainer)

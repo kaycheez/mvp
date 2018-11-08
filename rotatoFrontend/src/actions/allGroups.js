@@ -17,8 +17,8 @@ export const fetchGroupsFailure = error => ({
 });
 
 
-export function fetchGroups() {
-  return dispatch => {
+export const fetchGroups = () => (
+  dispatch => {
     dispatch(fetchGroupsBegin());
     return fetch('http://localhost:1177/api/groups')
       .then(handleErrors)
@@ -29,7 +29,7 @@ export function fetchGroups() {
       })
       .catch(error => dispatch(fetchGroupsFailure(error)));
   }
-}
+)
 
 // SAVE GROUP
 
@@ -80,10 +80,23 @@ export const updateName = name => ({
   payload: name
 });
 
-export const updateRotatees = rotatees => ({
-  type: types.UPDATE_ROTATEE,
-  payload: rotatees
+export const updateRotatees = rotatee => ({
+  type: types.UPDATE_ROTATEES,
+  payload: rotatee
 });
+
+export const updateNewRotateeName = rotateeName => ({
+  type: types.UPDATE_NEW_ROTATEE_NAME,
+  payload: rotateeName
+});
+
+export const updateAllRotatees = () => (
+  (dispatch, getState ) => {
+    dispatch(updateRotatees(getState().allGroups.newGroup.newRotateeName));
+  }
+)
+
+
 
 
 // Helpers

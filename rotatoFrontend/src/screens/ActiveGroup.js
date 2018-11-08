@@ -14,6 +14,8 @@ export default class HomeScreen extends Component {
   renderAllRotatees() {
     const { activeGroup } = this.props;
     const { rotatees } = activeGroup;
+    console.log('this is rotatees', rotatees);
+    console.log('this is activeGroup', activeGroup);
 
     return (
       <List 
@@ -34,10 +36,9 @@ export default class HomeScreen extends Component {
     return (
         <Container>
           <Content>
-            <Body>
-              <Text>{activeGroup.name}</Text>
+            {/* <Text>{activeGroup.name}</Text> */}
               {this.renderAllRotatees()}
-            </Body>
+            {/* <Body>   */}
           </Content>
           <Footer>
             <FooterTab>
