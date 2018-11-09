@@ -1,9 +1,10 @@
+
 import React, { Component } from 'react';
 import { StyleSheet, FlatList } from 'react-native';
 import { Container, Header, Title, Content, Button, Text, Form, Label, Input, Item, Body, Footer, FooterTab, List, ListItem } from 'native-base';
 
 
-export default class AddGroup extends Component {
+export default class EditGroup extends Component {
 
   _keyExtractor = (item, index) => {
     const id = index + 1;
@@ -37,8 +38,8 @@ export default class AddGroup extends Component {
       goBack, 
       updateNewName, 
       updateAllRotateesAndClear, 
-      updateNewRotateeName,
-      saveNewGroupAndGoBack, 
+      updateRotateeName,
+      updateGroupAndGoBack, 
     } = this.props;
 
     return (
@@ -67,7 +68,7 @@ export default class AddGroup extends Component {
             <Form>
               <Item stackedLabel>
                 <Label>New Rotatee</Label>
-                <Input name='rotatee' value={newRotateeName} onChangeText={(rotatee) => updateNewRotateeName(rotatee)}/>
+                <Input name='rotatee' value={newRotateeName} onChangeText={(rotatee) => updateRotateeName(rotatee)}/>
               </Item>
             </Form>
             <Button primary onPress={() => updateAllRotateesAndClear()}>
@@ -78,7 +79,7 @@ export default class AddGroup extends Component {
         <Footer>
           <FooterTab>
             <Button transparent primary onPress={() => {
-                saveNewGroupAndGoBack();
+                updateGroupAndGoBack();
               }}
             ><Text>Save</Text></Button>
             <Button transparent danger onPress={() => goBack()}>

@@ -2,7 +2,7 @@ import * as types from '../actions/types';
 import update from 'immutability-helper';
 
 const initialState = { 
-  activeGroup: { name: '', rotatees: [], queue: 0, history: [], newRotateeName: '', loading: false, error: null },
+  activeGroup: { name: '', rotatees: [], queue: null, history: [], newRotateeName: '', loading: false, error: null },
   activeGroupIndex: null
 }
 
@@ -92,6 +92,31 @@ export default function(state = initialState, action) {
           activeGroup: {
             loading: {$set: false},
             error: {$set: action.payload}
+          }
+        }
+      )
+    
+      case types.CLEAR_ACTIVE_GROUP:
+      return update(
+        state, 
+        {
+          activeGroup: {
+            name: {$set: ''}, 
+            rotatees: {$set: []}, 
+            newRotateeName: {$set: ''},
+            queue: {$set: null},
+            history: {$set: []},
+            error: {$set: null} 
+          }
+        }
+      )
+
+    case types.CLEAR_ACTIVE_ROTATEE_NAME:
+      return update(
+        state, 
+        {
+          activeGroup: {
+            newRotateeName: {$set: ''},
           }
         }
       )

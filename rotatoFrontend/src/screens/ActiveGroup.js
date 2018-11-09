@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Body, Content, Button, Text, Footer, FooterTab, List, ListItem } from 'native-base';
+import { Container, Header, Left, Right, Icon, Title, Body, Content, Button, Text, Footer, FooterTab, List, ListItem } from 'native-base';
 
 export default class HomeScreen extends Component {
   constructor(props) {
@@ -12,9 +12,7 @@ export default class HomeScreen extends Component {
 
 
   renderAllRotatees() {
-    const { rotatees } = this.props.activeGroup;
-
-    console.log('this is rotatees', rotatees);
+    const { name, rotatees } = this.props.activeGroup;
   
 
     return (
@@ -31,14 +29,23 @@ export default class HomeScreen extends Component {
   }
 
   render() {
-    const { navToEditGroup } = this.props;
+    const { activeGroup, navToEditGroup, clearAndGoBack } = this.props;
 
     return (
         <Container>
+          <Header>
+          <Left>
+            <Button transparent onPress={() => clearAndGoBack()}>
+              <Icon name='arrow-back' />
+            </Button>
+          </Left>
+          <Body>
+            <Title>{activeGroup.name}</Title>
+          </Body>
+          <Right />
+        </Header>
           <Content>
-            {/* <Text>{activeGroup.name}</Text> */}
-              {this.renderAllRotatees()}
-            {/* <Body>   */}
+            {this.renderAllRotatees()}
           </Content>
           <Footer>
             <FooterTab>

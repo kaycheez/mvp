@@ -35,14 +35,27 @@ export const updateActiveHistory = history => ({
   payload: history
 })
 
+
+
 export const updateActiveGroup = (name, rotatees, queue, history) => (
-  dispatch => {
-    dispatch(updateActiveName(name))
-    dispatch(updateActiveRotatees(rotatees))
-    dispatch(updateActiveQueue(queue))
-    dispatch(updateActiveHistory(history))
+  (dispatch, getState) => {
+    const currRotatees = getState().activeGroup.activeGroup.rotatees;
+    if (currRotatees.length === 0) {
+      dispatch(updateActiveName(name))
+      dispatch(updateActiveRotatees(rotatees))
+      dispatch(updateActiveQueue(queue))
+      dispatch(updateActiveHistory(history))
+    }
   }
 )
+
+export const clearActiveGroup = () => ({
+  type: types.CLEAR_ACTIVE_GROUP,
+});
+
+export const clearActiveRotateeName = () => ({
+  type: types.CLEAR_ACTIVE_ROTATEE_NAME,
+});
 
 
 // UPDATE GROUP REQUEST

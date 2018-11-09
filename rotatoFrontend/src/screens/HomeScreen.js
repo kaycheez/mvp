@@ -24,7 +24,9 @@ export default class HomeScreen extends Component {
       <List 
         dataArray={groups}
         renderRow={(group, sectionID, rowID) => 
-          <ListItem button onPress={() => navToGroup(rowID)}>
+          <ListItem button onPress={() => {
+            navToGroup(rowID);
+          }}>
             <Text>{group.name}</Text>
           </ListItem>
         }

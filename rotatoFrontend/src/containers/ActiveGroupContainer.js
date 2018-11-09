@@ -6,22 +6,26 @@ import ActiveGroup from "../screens/ActiveGroup";
 
 class ActiveGroupContainer extends Component {
   componentDidMount() {
-    const { updateActiveGroup, groups, activeGroupIndex } = this.props;
+    const { updateActiveGroup, groups, activeGroupIndex, activeGroup } = this.props;
     const { name, rotatees, queue, history } = groups[activeGroupIndex];
-    console.log("name, rotatees, queue, history", name, rotatees, queue, history)
-    updateActiveGroup(name, rotatees, queue, history);
+
+    updateActiveGroup(name, rotatees, queue, history)
   }
   
   render() {
-    const { navigation, activeGroup } = this.props;
-    console.log()
+    const { navigation, activeGroup, clearActiveGroup } = this.props;
+
     return React.createElement(
       ActiveGroup,
       {
         activeGroup,
         navToEditGroup: () => {
-          navigation.navigate("EditGroup");
+          navigation.navigate("UpdateGroup");
         },
+        clearAndGoBack: () => {
+          clearActiveGroup();
+          navigation.goBack();
+        }
       }
     )
   }

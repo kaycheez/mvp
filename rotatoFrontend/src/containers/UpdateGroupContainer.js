@@ -4,19 +4,19 @@ import { bindActionCreators } from "redux";
 import { ActionCreators } from "../actions";
 import EditGroup from "../screens/EditGroup";
 
-class AddGroupContainer extends Component {
+class UpdateGroupContainer extends Component {
   render() {
     const { 
       name,
       rotatees,
       newRotateeName,
       navigation, 
-      updateNewName, 
+      updateName, 
       updateAllRotatees, 
-      updateNewRotateeName,
-      saveNewGroupAndRefresh,
-      clearNewGroup,
-      clearNewRotateeName,
+      saveNewGroupAndRefresh, 
+      updateActiveRotateeName,
+      clearActiveGroup,
+      clearActiveRotateeName,
     } = this.props;
 
     return React.createElement(
@@ -25,20 +25,18 @@ class AddGroupContainer extends Component {
         name,
         rotatees,
         newRotateeName,
-        updateNewName,
-        updateRotateeName: updateNewRotateeName,
+        updateName,
+        updateRotateeName: updateActiveRotateeName,
         updateAllRotateesAndClear: (() => {
           updateAllRotatees();
-          clearNewRotateeName();
+          clearActiveRotateeName();
         }),
         updateGroupAndGoBack: (newGroup) => {
           saveNewGroupAndRefresh(newGroup)
-            .then(() => clearNewGroup())
-            .then(() => navigation.navigate("Home"));
+            .then(() => navigation.goBack())
         },
         goBack: () => {
-          clearNewGroup();
-          navigation.navigate("Home");
+          navigation.goBack();
         }
       }
     )
@@ -46,13 +44,13 @@ class AddGroupContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  name: state.allGroups.newGroup.name,
-  rotatees: state.allGroups.newGroup.rotatees,
-  newRotateeName: state.allGroups.newGroup.newRotateeName,
+  name: state.activeGroup.activeGroup.name,
+  rotatees: state.activeGroup.activeGroup.rotatees,
+  newRotateeName: state.activeGroup.activeGroup.newRotateeName,
 })
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(ActionCreators, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddGroupContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateGroupContainer)

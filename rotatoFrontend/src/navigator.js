@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation';
 import HomeContainer from './containers/HomeContainer';
 import AddGroupContainer from './containers/AddGroupContainer';
 import ActiveGroupContainer from './containers/ActiveGroupContainer';
-import EditGroupContainer from './containers/EditGroupContainer';
+import UpdateGroupContainer from './containers/UpdateGroupContainer';
 
 export default createStackNavigator(
   {
@@ -15,13 +15,18 @@ export default createStackNavigator(
         header: null,
       }
     },
-    EditGroup: {
-      screen: EditGroupContainer,
+    UpdateGroup: {
+      screen: UpdateGroupContainer,
       navigationOptions: {
         header: null,
-    }
+      }
     },
-    ActiveGroup: ActiveGroupContainer,
+    ActiveGroup: {
+      screen: ActiveGroupContainer,
+      navigationOptions: {
+        header: null,
+      }
+    }
   },
   {
     initialRouteName: 'Home'
