@@ -94,7 +94,12 @@ export const updateAllRotatees = () => (
   (dispatch, getState ) => {
     dispatch(updateNewRotatees(getState().allGroups.newGroup.newRotateeName));
   }
-)
+  )
+  
+export const clearNewGroup = () => ({
+  type: types.CLEAR_NEW_GROUP,
+});
+
 
 
 

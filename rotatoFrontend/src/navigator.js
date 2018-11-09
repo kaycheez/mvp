@@ -9,9 +9,19 @@ import EditGroupContainer from './containers/EditGroupContainer';
 export default createStackNavigator(
   {
     Home: HomeContainer,
-    AddGroup: AddGroupContainer,
+    AddGroup: {
+      screen: AddGroupContainer,
+      navigationOptions: {
+        header: null,
+      }
+    },
+    EditGroup: {
+      screen: EditGroupContainer,
+      navigationOptions: {
+        header: null,
+    }
+    },
     ActiveGroup: ActiveGroupContainer,
-    EditGroup: EditGroupContainer
   },
   {
     initialRouteName: 'Home'

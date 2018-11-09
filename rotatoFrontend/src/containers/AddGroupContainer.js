@@ -10,10 +10,11 @@ class AddGroupContainer extends Component {
       name,
       rotatees,
       navigation, 
-      updateName, 
+      updateNewName, 
       updateAllRotatees, 
       updateNewRotateeName,
-      saveNewGroupAndRefresh, 
+      saveNewGroupAndRefresh,
+      clearNewGroup
     } = this.props;
 
     return React.createElement(
@@ -21,14 +22,16 @@ class AddGroupContainer extends Component {
       {
         name,
         rotatees,
-        updateName,
+        updateNewName,
         updateAllRotatees,
         updateNewRotateeName,
         saveNewGroupAndGoBack: (newGroup) => {
           saveNewGroupAndRefresh(newGroup)
+            .then(() => clearNewGroup())
             .then(() => navigation.navigate("Home"));
         },
         goBack: () => {
+          clearNewGroup();
           navigation.navigate("Home");
         }
       }

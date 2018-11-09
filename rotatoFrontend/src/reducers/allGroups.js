@@ -107,6 +107,19 @@ export default function(state = initialState, action) {
         }
       )
 
+    case types.CLEAR_NEW_GROUP:
+      return update(
+        state, 
+        {
+          newGroup: {
+            name: {$set: ''}, 
+            rotatees: {$set: []}, 
+            newRotateeName: {$set: ''},
+            error: {$set: null} 
+          }
+        }
+      )
+
     
 
     default:

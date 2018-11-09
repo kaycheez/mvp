@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, FlatList } from 'react-native';
-import { Container, Content, Button, Text, Form, Label, Input, Item, Body, Footer, FooterTab, List, ListItem } from 'native-base';
+import { Container, Header, Title, Content, Button, Text, Form, Label, Input, Item, Body, Footer, FooterTab, List, ListItem } from 'native-base';
 
 
 export default class AddGroup extends Component {
@@ -12,7 +12,6 @@ export default class AddGroup extends Component {
 
   renderRotatees() {
     const { rotatees } = this.props;
-    console.log('hey dur', rotatees);
 
     return (
       <FlatList 
@@ -35,20 +34,26 @@ export default class AddGroup extends Component {
     const { 
       name,
       goBack, 
-      updateName, 
-      updateAllRotatees,
+      updateNewName, 
+      updateAllRotatees, 
       updateNewRotateeName,
       saveNewGroupAndGoBack, 
     } = this.props;
 
     return (
       <Container>
+        <Header>
+          <Body>
+            <Title>Add New Group</Title>
+          </Body>
+
+        </Header>
         <Content style={styles.content}>
           <Body  style={styles.name}>
             <Form>
               <Item stackedLabel>
                 <Label>Group Name</Label>
-                <Input name='name' value={name} onChangeText={(name) => updateName(name)}/>
+                <Input name='name' value={name} onChangeText={(name) => updateNewName(name)}/>
               </Item>
             </Form>
           </Body>
