@@ -34,11 +34,11 @@ export default class EditGroup extends Component {
   render() {
     const { 
       name,
-      newRotateeName,
       goBack, 
-      updateNewName, 
-      updateAllRotateesAndClear, 
+      updateName, 
+      newRotateeName,
       updateRotateeName,
+      addRotateeAndClear, 
       updateGroupAndGoBack, 
     } = this.props;
 
@@ -55,7 +55,7 @@ export default class EditGroup extends Component {
             <Form>
               <Item stackedLabel>
                 <Label>Group Name</Label>
-                <Input name='name' value={name} onChangeText={(name) => updateNewName(name)}/>
+                <Input name='name' value={name} onChangeText={(name) => updateName(name)}/>
               </Item>
             </Form>
           </Body>
@@ -71,7 +71,7 @@ export default class EditGroup extends Component {
                 <Input name='rotatee' value={newRotateeName} onChangeText={(rotatee) => updateRotateeName(rotatee)}/>
               </Item>
             </Form>
-            <Button primary onPress={() => updateAllRotateesAndClear()}>
+            <Button primary onPress={() => addRotateeAndClear()}>
               <Text> Add New Rotatee </Text>
             </Button>
           </Body>

@@ -6,10 +6,10 @@ import ActiveGroup from "../screens/ActiveGroup";
 
 class ActiveGroupContainer extends Component {
   componentDidMount() {
-    const { updateActiveGroup, groups, activeGroupIndex, activeGroup } = this.props;
-    const { name, rotatees, queue, history } = groups[activeGroupIndex];
+    const { updateActiveGroup, groups, activeGroupIndex } = this.props;
+    const { name, rotatees, queue, history, _id, __v } = groups[activeGroupIndex];
 
-    updateActiveGroup(name, rotatees, queue, history)
+    updateActiveGroup(name, rotatees, queue, history, _id, __v)
   }
   
   render() {

@@ -20,10 +20,6 @@ export const updateActiveRotatees = rotatee => ({
   payload: rotatee
 })
 
-export const updateActiveRotateeName = rotateeName => ({
-  type: types.UPDATE_ACTIVE_ROTATEE_NAME,
-  payload: rotateeName
-});
 
 export const updateActiveQueue = queue => ({
   type: types.UPDATE_ACTIVE_QUEUE,
@@ -35,9 +31,35 @@ export const updateActiveHistory = history => ({
   payload: history
 })
 
+export const updateActiveID = id => ({
+  type: types.UPDATE_ACTIVE_ID,
+  payload: id
+})
+
+export const updateActiveVersion = version => ({
+  type: types.UPDATE_ACTIVE_VERSION,
+  payload: version
+})
+
+export const updateActiveRotateeName = rotateeName => ({
+  type: types.UPDATE_ACTIVE_ROTATEE_NAME,
+  payload: rotateeName
+});
+
+export const addActiveRotatee = newRotatee => ({
+  type: types.ADD_ACTIVE_ROTATEE,
+  payload: newRotatee
+})
+
+export const addNewActiveRotatee = () => (
+  (dispatch, getState ) => {
+    dispatch(addActiveRotatee(getState().activeGroup.newRotateeName));
+  }
+)
+  
 
 
-export const updateActiveGroup = (name, rotatees, queue, history) => (
+export const updateActiveGroup = (name, rotatees, queue, history, id, version) => (
   (dispatch, getState) => {
     const currRotatees = getState().activeGroup.activeGroup.rotatees;
     if (currRotatees.length === 0) {
@@ -45,6 +67,8 @@ export const updateActiveGroup = (name, rotatees, queue, history) => (
       dispatch(updateActiveRotatees(rotatees))
       dispatch(updateActiveQueue(queue))
       dispatch(updateActiveHistory(history))
+      dispatch(updateActiveID(id))
+      dispatch(updateActiveVersion(version))
     }
   }
 )
@@ -72,3 +96,42 @@ export const updateActiveGroupFailure = error => ({
   type: types.UPDATE_ACTIVE_GROUP_FAILURE,
   payload: error
 });
+
+
+export const updateGroup = () => (
+  (dispatch, getState ) => {
+    // const id = getState().allGroups.groupsList[getState().activeGroup.activeGroupIndex];
+    // const updatedGroup = {
+    //   name: getState().activeGroup.activeGroup.name,
+    //   rotatees: getState().activeGroup.activeGroup.rotatees,
+    //   queue: getState().activeGroup.activeGroup.queue,
+    //   history: getState().activeGroup.activeGroup.history,
+    //   _id: getState().activeGroup.activeGroup._id,
+    //   __v: getState().activeGroup.activeGroup.__v
+    // }
+    const updatedGroup = getState().activeGroup.activeGroup;
+
+    dispatch(updateActiveGroupBegin());
+    return fetch('http://localhost:1177/api/groups', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "PUT",
+      body: JSON.stringify(updatedGroup)
+    })
+    .then(handleErrors)
+    .then(() => dispatch(updateActiveGroupSuccess()))
+    .catch(error => dispatch(updateActiveGroupFailure(error)));
+  }
+)
+
+
+// Helpers
+
+function handleErrors(response) {
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response;
+}

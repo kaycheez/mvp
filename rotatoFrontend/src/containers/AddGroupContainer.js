@@ -12,7 +12,7 @@ class AddGroupContainer extends Component {
       newRotateeName,
       navigation, 
       updateNewName, 
-      updateAllRotatees, 
+      updateNewRotatees, 
       updateNewRotateeName,
       saveNewGroupAndRefresh,
       clearNewGroup,
@@ -25,10 +25,10 @@ class AddGroupContainer extends Component {
         name,
         rotatees,
         newRotateeName,
-        updateNewName,
+        updateName: updateNewName,
         updateRotateeName: updateNewRotateeName,
-        updateAllRotateesAndClear: (() => {
-          updateAllRotatees();
+        addRotateeAndClear: (() => {
+          updateNewRotatees();
           clearNewRotateeName();
         }),
         updateGroupAndGoBack: (newGroup) => {

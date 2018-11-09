@@ -2,8 +2,17 @@ import * as types from '../actions/types';
 import update from 'immutability-helper';
 
 const initialState = { 
-  activeGroup: { name: '', rotatees: [], queue: null, history: [], newRotateeName: '', loading: false, error: null },
-  activeGroupIndex: null
+  activeGroup: { 
+    name: '', 
+    rotatees: [], 
+    queue: null, 
+    history: [], 
+    _id: '', 
+    __v: null },
+  activeGroupIndex: null,
+  newRotateeName: '', 
+  loading: false, 
+  error: null
 }
 
 export default function(state = initialState, action) {
@@ -36,16 +45,6 @@ export default function(state = initialState, action) {
           }
       )
 
-    case types.UPDATE_ACTIVE_ROTATEE_NAME:
-      return update(
-        state,
-          {
-            activeGroup: {
-              newRotateeName: {$set: action.payload}
-            }
-          }
-      )
-
     case types.UPDATE_ACTIVE_QUEUE:
       return update(
         state,
@@ -65,34 +64,66 @@ export default function(state = initialState, action) {
             }
           }
       )
-      
-
-      case types.UPDATE_ACTIVE_GROUP_BEGIN:
+    case types.UPDATE_ACTIVE_ID:
       return update(
-        state, 
+        state,
+          {
+            activeGroup: {
+              _id: {$set: action.payload}
+            }
+          }
+      )
+    case types.UPDATE_ACTIVE_VERSION:
+      return update(
+        state,
+          {
+            activeGroup: {
+              __v: {$set: action.payload}
+            }
+          }
+      )
+
+    case types.UPDATE_ACTIVE_ROTATEE_NAME:
+      return update(
+        state,
+        {
+          newRotateeName: {$set: action.payload}
+        }
+      )
+      
+    case types.ADD_ACTIVE_ROTATEE:
+      return update(
+        state,
         {
           activeGroup: {
-            loading: {$set: true}
+            rotatees: {$push: [action.payload]}
           }
         }
       )
+      
+
+    case types.UPDATE_ACTIVE_GROUP_BEGIN:
+      return update(
+        state, 
+        {
+          loading: {$set: true}
+        }
+      )
+
     case types.UPDATE_ACTIVE_GROUP_SUCCESS:
       return update(
         state, 
         {
-          activeGroup: {
-            loading: {$set: false},
-          }
+          loading: {$set: false},
         }
       )
+
     case types.UPDATE_ACTIVE_GROUP_FAILURE:
       return update(
         state, 
         {
-          activeGroup: {
-            loading: {$set: false},
-            error: {$set: action.payload}
-          }
+          loading: {$set: false},
+          error: {$set: action.payload}
         }
       )
     
@@ -106,8 +137,10 @@ export default function(state = initialState, action) {
             newRotateeName: {$set: ''},
             queue: {$set: null},
             history: {$set: []},
-            error: {$set: null} 
-          }
+            _id: {$set: ''},
+            __v: {$set: null},
+          },
+          error: {$set: null}
         }
       )
 
@@ -115,9 +148,7 @@ export default function(state = initialState, action) {
       return update(
         state, 
         {
-          activeGroup: {
-            newRotateeName: {$set: ''},
-          }
+          newRotateeName: {$set: ''},
         }
       )
 

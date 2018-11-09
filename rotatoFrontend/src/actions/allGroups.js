@@ -80,7 +80,7 @@ export const updateNewName = name => ({
   payload: name
 });
 
-export const updateNewRotatees = rotatee => ({
+export const addNewRotatee = rotatee => ({
   type: types.UPDATE_NEW_ROTATEES,
   payload: rotatee
 });
@@ -90,11 +90,11 @@ export const updateNewRotateeName = rotateeName => ({
   payload: rotateeName
 });
 
-export const updateAllRotatees = () => (
+export const updateNewRotatees = () => (
   (dispatch, getState ) => {
-    dispatch(updateNewRotatees(getState().allGroups.newGroup.newRotateeName));
+    dispatch(addNewRotatee(getState().allGroups.newGroup.newRotateeName));
   }
-  )
+)
   
 export const clearNewGroup = () => ({
   type: types.CLEAR_NEW_GROUP,
