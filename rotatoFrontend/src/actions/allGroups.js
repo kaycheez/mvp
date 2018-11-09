@@ -100,6 +100,10 @@ export const clearNewGroup = () => ({
   type: types.CLEAR_NEW_GROUP,
 });
 
+export const clearNewRotateeName = () => ({
+  type: types.CLEAR_NEW_ROTATEE_NAME,
+});
+
 
 
 

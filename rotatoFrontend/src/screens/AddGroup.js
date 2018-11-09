@@ -33,9 +33,10 @@ export default class AddGroup extends Component {
   render() {
     const { 
       name,
+      newRotateeName,
       goBack, 
       updateNewName, 
-      updateAllRotatees, 
+      updateAllRotateesAndClear, 
       updateNewRotateeName,
       saveNewGroupAndGoBack, 
     } = this.props;
@@ -66,10 +67,10 @@ export default class AddGroup extends Component {
             <Form>
               <Item stackedLabel>
                 <Label>New Rotatee</Label>
-                <Input name='rotatee' onChangeText={(rotatee) => updateNewRotateeName(rotatee)}/>
+                <Input name='rotatee' value={newRotateeName} onChangeText={(rotatee) => updateNewRotateeName(rotatee)}/>
               </Item>
             </Form>
-            <Button primary onPress={() => updateAllRotatees()}>
+            <Button primary onPress={() => updateAllRotateesAndClear()}>
               <Text> Add New Rotatee </Text>
             </Button>
           </Body>

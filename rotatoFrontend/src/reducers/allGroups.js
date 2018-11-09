@@ -120,6 +120,16 @@ export default function(state = initialState, action) {
         }
       )
 
+    case types.CLEAR_NEW_ROTATEE_NAME:
+      return update(
+        state, 
+        {
+          newGroup: {
+            newRotateeName: {$set: ''},
+          }
+        }
+      )
+
     
 
     default:

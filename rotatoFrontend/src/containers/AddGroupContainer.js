@@ -9,12 +9,14 @@ class AddGroupContainer extends Component {
     const { 
       name,
       rotatees,
+      newRotateeName,
       navigation, 
       updateNewName, 
       updateAllRotatees, 
       updateNewRotateeName,
       saveNewGroupAndRefresh,
-      clearNewGroup
+      clearNewGroup,
+      clearNewRotateeName,
     } = this.props;
 
     return React.createElement(
@@ -22,9 +24,13 @@ class AddGroupContainer extends Component {
       {
         name,
         rotatees,
+        newRotateeName,
         updateNewName,
-        updateAllRotatees,
         updateNewRotateeName,
+        updateAllRotateesAndClear: (() => {
+          updateAllRotatees();
+          clearNewRotateeName();
+        }),
         saveNewGroupAndGoBack: (newGroup) => {
           saveNewGroupAndRefresh(newGroup)
             .then(() => clearNewGroup())
@@ -42,6 +48,7 @@ class AddGroupContainer extends Component {
 const mapStateToProps = state => ({
   name: state.allGroups.newGroup.name,
   rotatees: state.allGroups.newGroup.rotatees,
+  newRotateeName: state.allGroups.newGroup.newRotateeName,
 })
 
 const mapDispatchToProps = dispatch => {
