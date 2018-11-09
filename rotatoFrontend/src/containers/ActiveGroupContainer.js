@@ -13,7 +13,7 @@ class ActiveGroupContainer extends Component {
   }
   
   render() {
-    const { navigation, activeGroup, clearActiveGroup } = this.props;
+    const { navigation, activeGroup, clearActiveGroup, fetchGroups } = this.props;
 
     return React.createElement(
       ActiveGroup,
@@ -23,8 +23,11 @@ class ActiveGroupContainer extends Component {
           navigation.navigate("UpdateGroup");
         },
         clearAndGoBack: () => {
-          clearActiveGroup();
-          navigation.goBack();
+          fetchGroups()
+            .then(() => {
+              clearActiveGroup();
+              navigation.goBack();
+            })
         }
       }
     )
