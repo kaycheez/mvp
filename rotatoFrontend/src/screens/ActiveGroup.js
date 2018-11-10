@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
-import { Container, Header, Left, Right, Icon, Title, Body, Content, Button, Text, Footer, FooterTab, List, ListItem } from 'native-base';
+import { StyleSheet, FlatList } from 'react-native';
+import { Container, Header, Left, Right, Icon, Title, Body, Content, Button, Text, Footer, FooterTab, ListItem } from 'native-base';
+
+import RotaterContainer from '../containers/RotaterContainer'; 
 
 export default class HomeScreen extends Component {
   constructor(props) {
@@ -9,22 +11,36 @@ export default class HomeScreen extends Component {
     this.renderAllRotatees = this.renderAllRotatees.bind(this);
   }
 
+  _keyExtractor = (item, index) => {
+    const id = index + 1;
+    return `${id}`
+  };
+
+  renderRotater() {
+    const { rotatees } = this.props.activeGroup;
+
+    if (rotatees.length < 1) {
+      return null
+    }
+    return <RotaterContainer />
+  }
 
 
   renderAllRotatees() {
-    const { name, rotatees } = this.props.activeGroup;
+    const { rotatees } = this.props.activeGroup;
   
 
     return (
-      <List 
-        dataArray={rotatees}
-        renderRow={(rotatee) => 
-          <ListItem >
-            <Text>{rotatee}</Text>
-          </ListItem>
+      <FlatList 
+        data={rotatees}
+        renderItem={({ item }) => 
+            <ListItem >
+              <Text>{item}</Text>
+            </ListItem>
         }
+        keyExtractor={this._keyExtractor}
       >
-      </List>
+      </FlatList>
     )
   }
 
@@ -45,7 +61,10 @@ export default class HomeScreen extends Component {
           <Right />
         </Header>
           <Content>
-            {this.renderAllRotatees()}
+            <Body style={styles.rotatees}>
+              {this.renderAllRotatees()}
+            </Body>
+            {this.renderRotater()}
           </Content>
           <Footer>
             <FooterTab>
@@ -58,5 +77,11 @@ export default class HomeScreen extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  rotatees: {
+    flex: 1,
+  },
+});
 
 

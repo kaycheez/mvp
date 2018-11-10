@@ -17,13 +17,10 @@ export default class EditGroup extends Component {
     return (
       <FlatList 
         data={rotatees}
-        renderItem={({ item }) => {
-          return (
+        renderItem={({ item }) => 
           <ListItem>
             <Text>{item}</Text>
           </ListItem>
-          )
-        }
         }
         keyExtractor={this._keyExtractor}
       >
@@ -44,13 +41,17 @@ export default class EditGroup extends Component {
 
     return (
       <Container>
+        
         <Header>
+
           <Body>
-            <Title>Add New Group</Title>
+            <Title>Edit Group</Title>
           </Body>
 
         </Header>
+
         <Content style={styles.content}>
+
           <Body  style={styles.name}>
             <Form>
               <Item stackedLabel>
@@ -59,11 +60,12 @@ export default class EditGroup extends Component {
               </Item>
             </Form>
           </Body>
-            {/* <Text>Rotatees</Text> */}
+
           <Body  style={styles.rotateeList}>
             <Text>Rotatees</Text>
             {this.renderRotatees()}
           </Body>
+
           <Body  style={styles.newRotatee}>
             <Form>
               <Item stackedLabel>
@@ -75,7 +77,9 @@ export default class EditGroup extends Component {
               <Text> Add New Rotatee </Text>
             </Button>
           </Body>
+
         </Content>
+
         <Footer>
           <FooterTab>
             <Button transparent primary onPress={() => {
@@ -87,6 +91,7 @@ export default class EditGroup extends Component {
             </Button>   
           </FooterTab>
        </Footer>
+
       </Container>
     )
   }

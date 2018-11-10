@@ -100,15 +100,6 @@ export const updateActiveGroupFailure = error => ({
 
 export const updateGroup = () => (
   (dispatch, getState ) => {
-    // const id = getState().allGroups.groupsList[getState().activeGroup.activeGroupIndex];
-    // const updatedGroup = {
-    //   name: getState().activeGroup.activeGroup.name,
-    //   rotatees: getState().activeGroup.activeGroup.rotatees,
-    //   queue: getState().activeGroup.activeGroup.queue,
-    //   history: getState().activeGroup.activeGroup.history,
-    //   _id: getState().activeGroup.activeGroup._id,
-    //   __v: getState().activeGroup.activeGroup.__v
-    // }
     const updatedGroup = getState().activeGroup.activeGroup;
 
     dispatch(updateActiveGroupBegin());
